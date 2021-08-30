@@ -3,7 +3,8 @@ language: php
 dist: xenial
 
 git:
-  depth: 2
+  depth: false
+  quiet: true
 
 cache:
   directories:
@@ -22,12 +23,20 @@ matrix:
     - php: 8.0
       env:
         - ZENSTRUCK_BROWSER_VS=^0.7.0
+    - php: 8.0
+      env:
+        - SYMPLIFY_PHPSTANRULES_VS=^9.4
+    - php: 8.0
+      env:
+        - SYMPLIFY_PHPSTANRULES_VS=9.4.36
 
 
 install:
   - if [ "$ZENSTRUCK_BROWSER_VS" != "" ]; then composer req --dev "zenstruck/browser:${ZENSTRUCK_BROWSER_VS}"; fi;
+  - if [ "$SYMPLIFY_PHPSTANRULES_VS" != "" ]; then composer req --dev "symplify/phpstan-rules:${SYMPLIFY_PHPSTANRULES_VS}"; fi;
   - composer update ${COMPOSER_FLAGS} --prefer-dist --no-interaction
 
 script:
   - composer validate --strict --no-check-lock
-  - bin/phpunit $PHPUNIT_FLAGS
+  - bin/phpunit
+  - vendor/bin/phpstan
