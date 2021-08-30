@@ -5,7 +5,6 @@ namespace App\Tests;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpKernel\DataCollector\RequestDataCollector;
 use Symfony\Component\VarDumper\Cloner\Data;
-use Zenstruck\Browser\Response;
 use Zenstruck\Browser\Test\HasBrowser;
 
 class SeveralButtonClickTest extends WebTestCase
@@ -49,6 +48,7 @@ class SeveralButtonClickTest extends WebTestCase
             ->fillField('default[fieldTwo]', '2')
             ->withProfiling()
             ->click('firstPlainButton')
+            // clicked button notification not found
             ->assertNotContains('clicked firstPlainButton')
             ->profile()->getCollector('request');
 
@@ -68,6 +68,7 @@ class SeveralButtonClickTest extends WebTestCase
             ->fillField('default[fieldTwo]', '2')
             ->withProfiling()
             ->click('secondPlainButton')
+            // clicked button notification not found
             ->assertNotContains('clicked secondPlainButton')
             ->profile()->getCollector('request');
 

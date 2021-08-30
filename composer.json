@@ -1,4 +1,6 @@
 {
+    "name": "raneomik/sf-sandbox",
+    "description": "symfony sandbox for test purposes",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "stable",

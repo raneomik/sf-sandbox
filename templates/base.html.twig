@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="cz">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
@@ -25,4 +25,7 @@
         {% block body %}{% endblock %}
 
     </body>
+<footer>
+    {{ current_date() }}
+</footer>
 </html>
