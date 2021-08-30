@@ -19,20 +19,20 @@ matrix:
   include:
     - php: 8.0
       env:
-        - ZENSTRUCK_BROWSER_VS=^0.6.0
+        - ZENSTRUCK_BROWSER_V=^0.6.0
     - php: 8.0
       env:
-        - ZENSTRUCK_BROWSER_VS=^0.7.0
+        - ZENSTRUCK_BROWSER_V=^0.7.0
     - php: 8.0
       env:
-        - SYMPLIFY_PHPSTANRULES_VS=^9.4
+        - SYMPLIFY_PHPSTANRULES_V=^9.4
     - php: 8.0
       env:
-        - SYMPLIFY_PHPSTANRULES_VS=9.4.36
+        - SYMPLIFY_PHPSTANRULES_V=9.4.36
 
 install:
-  - if [ "$ZENSTRUCK_BROWSER_VS" != "" ]; then composer req --dev "zenstruck/browser:${ZENSTRUCK_BROWSER_VS}" -W; fi;
-  - if [ "$SYMPLIFY_PHPSTANRULES_VS" != "" ]; then composer req --dev "symplify/phpstan-rules:${SYMPLIFY_PHPSTANRULES_VS}" -W; fi;
+  - if [ "$ZENSTRUCK_BROWSER_V" != "" ]; then composer req --dev "zenstruck/browser:${ZENSTRUCK_BROWSER_V}" -W; fi;
+  - if [ "$SYMPLIFY_PHPSTANRULES_V" != "" ]; then composer req --dev "symplify/phpstan-rules:${SYMPLIFY_PHPSTANRULES_V}" -W; fi;
   - composer update ${COMPOSER_FLAGS} --prefer-dist --no-interaction
 
 script:
