@@ -30,10 +30,9 @@ matrix:
       env:
         - SYMPLIFY_PHPSTANRULES_VS=9.4.36
 
-
 install:
-  - if [ "$ZENSTRUCK_BROWSER_VS" != "" ]; then composer req --dev "zenstruck/browser:${ZENSTRUCK_BROWSER_VS}"; fi;
-  - if [ "$SYMPLIFY_PHPSTANRULES_VS" != "" ]; then composer req --dev "symplify/phpstan-rules:${SYMPLIFY_PHPSTANRULES_VS}"; fi;
+  - if [ "$ZENSTRUCK_BROWSER_VS" != "" ]; then composer req --dev "zenstruck/browser:${ZENSTRUCK_BROWSER_VS}" -W; fi;
+  - if [ "$SYMPLIFY_PHPSTANRULES_VS" != "" ]; then composer req --dev "symplify/phpstan-rules:${SYMPLIFY_PHPSTANRULES_VS}" -W; fi;
   - composer update ${COMPOSER_FLAGS} --prefer-dist --no-interaction
 
 script:
