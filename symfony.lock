@@ -1,4 +1,7 @@
 {
+    "behat/mink": {
+        "version": "v1.8.1"
+    },
     "composer/package-versions-deprecated": {
         "version": "1.11.99.3"
     },
@@ -93,6 +96,9 @@
     },
     "monolog/monolog": {
         "version": "2.3.2"
+    },
+    "mtdowling/jmespath.php": {
+        "version": "2.6.1"
     },
     "myclabs/deep-copy": {
         "version": "1.10.2"
@@ -591,5 +597,11 @@
     },
     "webmozart/assert": {
         "version": "1.10.0"
+    },
+    "zenstruck/browser": {
+        "version": "v0.6.0"
+    },
+    "zenstruck/callback": {
+        "version": "v1.4.0"
     }
 }

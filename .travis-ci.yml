@@ -1,0 +1,33 @@
+language: php
+
+dist: xenial
+
+git:
+  depth: 2
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+env:
+  global:
+    - SYMFONY_PHPUNIT_DISABLE_RESULT_CACHE=1
+    - COMPOSER_FLAGS="--optimize-autoloader"
+
+matrix:
+  fast_finish: true
+  include:
+    - php: 8.0
+      env:
+        - ZENSTRUCK_BROWSER_VS=^0.6.0
+    - php: 8.0
+      env:
+        - ZENSTRUCK_BROWSER_VS=^0.7.0
+
+
+install:
+  - if [ "$ZENSTRUCK_BROWSER_VS" != "" ]; then composer req --dev "zenstruck/browser:${ZENSTRUCK_BROWSER_VS}"; fi;
+  - composer update ${COMPOSER_FLAGS} --prefer-dist --no-interaction
+
+script:
+  - composer validate --strict --no-check-lock
+  - bin/phpunit $PHPUNIT_FLAGS

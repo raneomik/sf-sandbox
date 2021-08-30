@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ form_start(form) }}
+    {{ form_rest(form) }}
+    <input type="submit" name="submit" value="firstPlainButton"/>
+    <button name="submit" value="secondPlainButton">
+        secondPlainButton
+    </button>
+    {{ form_end(form) }}
+{% endblock body %}
