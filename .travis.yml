@@ -35,8 +35,11 @@ install:
   - if [ "$ZENSTRUCK_BROWSER_V" != "" ]; then composer req --dev "zenstruck/browser:${ZENSTRUCK_BROWSER_V}" -W; fi;
   - if [ "$SYMPLIFY_PHPSTANRULES_V" != "" ]; then composer req --dev "symplify/phpstan-rules:${SYMPLIFY_PHPSTANRULES_V}" -W; fi;
   - composer update ${COMPOSER_FLAGS} --prefer-dist --no-interaction
-  - if [ "$ZENSTRUCK_BROWSER_PATCH" != "" ]; then \
-      curl $ZENSTRUCK_BROWSER_PATCH | patch -Nsfp0 --binary --no-backup-if-mismatch -d vendor/zenstruck/browser \
+  - >
+    if [ "$ZENSTRUCK_BROWSER_PATCH" != "" ]; then
+      cd vendor/zenstruck/browser
+      curl $ZENSTRUCK_BROWSER_PATCH | patch -fp1 --no-backup-if-mismatch
+      cd -
     fi;
 
 script:
