@@ -23,6 +23,7 @@ matrix:
     - php: 8.0
       env:
         - ZENSTRUCK_BROWSER_V=^0.7.0
+        - ZENSTRUCK_BROWSER_PATCH=https://patch-diff.githubusercontent.com/raw/zenstruck/browser/pull/56.patch
     - php: 8.0
       env:
         - SYMPLIFY_PHPSTANRULES_V=^9.4
@@ -34,6 +35,9 @@ install:
   - if [ "$ZENSTRUCK_BROWSER_V" != "" ]; then composer req --dev "zenstruck/browser:${ZENSTRUCK_BROWSER_V}" -W; fi;
   - if [ "$SYMPLIFY_PHPSTANRULES_V" != "" ]; then composer req --dev "symplify/phpstan-rules:${SYMPLIFY_PHPSTANRULES_V}" -W; fi;
   - composer update ${COMPOSER_FLAGS} --prefer-dist --no-interaction
+  - if [ "$ZENSTRUCK_BROWSER_PATCH" != "" ]; then \
+      curl $ZENSTRUCK_BROWSER_PATCH | patch -Nsfp0 --binary --no-backup-if-mismatch -d vendor/zenstruck/browser \
+    fi;
 
 script:
   - composer validate --strict --no-check-lock
